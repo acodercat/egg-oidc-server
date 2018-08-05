@@ -1,39 +1,35 @@
-# oidc-server
-
+# egg-oidc-server
 
 
 ## 快速入门
 
-<!-- 在此次添加使用文档 -->
-
-如需进一步了解，参见 [egg 文档][egg]。
-
-### 本地开发
 
 ```bash
 $ npm i
-$ npm run dev
-$ open http://localhost:7001/
 ```
 
-### 部署
+先需要在`config.default.js`配置文件的config.sequelize中配置数据库信息。
+如果是使用的是mysql就把dialect配置成mysql。
+最后执行sequelize迁移
+```bash
+npm run migrate:up
+```
+
+迁移文件运行完毕后，把`config.default.js`配置文件中的config.view
+
+
+
+## 运行
+
+linux 
 
 ```bash
-$ npm start
-$ npm stop
+DEBUG=oidc-provider:*npm run dev
 ```
 
-### 单元测试
+windows 
 
-- [egg-bin] 内置了 [mocha], [thunk-mocha], [power-assert], [istanbul] 等框架，让你可以专注于写单元测试，无需理会配套工具。
-- 断言库非常推荐使用 [power-assert]。
-- 具体参见 [egg 文档 - 单元测试](https://eggjs.org/zh-cn/core/unittest)。
-
-### 内置指令
-
-- 使用 `npm run lint` 来做代码风格检查。
-- 使用 `npm test` 来执行单元测试。
-- 使用 `npm run autod` 来自动检测依赖更新，详细参见 [autod](https://www.npmjs.com/package/autod) 。
-
-
-[egg]: https://eggjs.org
+```bash
+set DEBUG=oidc-provider:*
+npm run dev
+```
