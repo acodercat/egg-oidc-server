@@ -12,13 +12,13 @@ module.exports = appInfo => {
   config.middleware = [];
 
 
-  // config.view = {
-  //   defaultViewEngine: 'nunjucks',
-  //   defaultExtension: '.html',
-  //   root: [
-  //     path.join(appInfo.baseDir, 'app/view'),
-  //   ].join(',')
-  // }
+  config.view = {
+    defaultViewEngine: 'nunjucks',
+    defaultExtension: '.html',
+    root: [
+      path.join(appInfo.baseDir, 'app/view'),
+    ].join(',')
+  }
 
   config.oidcProvider = {
     formats: {

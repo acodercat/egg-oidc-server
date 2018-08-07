@@ -9,8 +9,6 @@ class InteractionController extends Controller {
     console.log(ctx.app.oidcProvider);
     const details = await ctx.app.oidcProvider.interactionDetails(ctx.req);
     const client = await ctx.app.oidcProvider.Client.find(details.params.client_id);
-    console.log('12121');
-
     if (details.interaction.error === 'login_required') {
       await ctx.render('login', {
         client,
@@ -39,7 +37,6 @@ class InteractionController extends Controller {
   }
 
   async confirm(ctx) {
-    console.log('confirm interaction');
     const result = { consent: {} };
     await ctx.app.oidcProvider.interactionFinished(ctx.req, ctx.res, result);
   }
