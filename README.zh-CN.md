@@ -305,6 +305,7 @@ oidc的发现服务，这个接口返回了服务的详细信息。
 
 ```json
 {
+    "application_type": "web",
 	"redirect_uris": ["https://127.0.0.1:3000"],
 	"response_types": ["id_token token"],
 	"grant_types":["implicit"],
@@ -380,7 +381,7 @@ oidc的发现服务，这个接口返回了服务的详细信息。
 
 http://localhost:7001/auth?scope=openid&response_type=id_token+token&client_id=b4735627-252c-480d-93aa-c635816a1e2c&nonce=odekghsaoghoashg
 
-这个示例使用了`implicit`授权模式，该请求会通过重定向返回access_token和id_token。这个id_token也就是oidc在OAuth2基础之上的扩展。
+这个示例使用了`implicit`授权模式，该请求会打开一个认证页面，认证成功后通过重定向返回access_token和id_token。这个id_token也就是oidc在OAuth2基础之上的扩展。
 
 
 
@@ -392,6 +393,3 @@ OAuth2中通过授权后返回一个access_token给客户端，客户端拿着�
 #### 推荐一位的前辈关于协议的几篇文章
 
 http://www.cnblogs.com/linianhui/tag/OIDC/
-
-
-
