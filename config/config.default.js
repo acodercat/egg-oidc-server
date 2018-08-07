@@ -90,15 +90,16 @@ module.exports = appInfo => {
     // cookies: {
     //   keys : ['1212']
     // },
-    // async findById(ctx, sub) {
-    //   console.log('id11111', sub);
-    //   return {
-    //     accountId: 1,
-    //     async claims(use, scope) {
-    //       return {sub};
-    //     },
-    //   };
-    // }
+    async findById(ctx, sub) {
+      const account = await ctx.app.model.Account.findById(sub);
+      console.log('account', account);
+      return {
+        accountId: 1,
+        async claims(use, scope) {
+          return {sub};
+        },
+      };
+    }
   }
 
   config.security = {

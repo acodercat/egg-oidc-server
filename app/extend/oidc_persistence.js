@@ -25,7 +25,7 @@ module.exports = app => {
       return accessToken.save();
     },
     async findById (id) {
-      const found = await  app.model.AccessToken.findById(id);
+      const found = await app.model.AccessToken.findById(id);
       if (!found) return;
       return { ...found.data };
     },
