@@ -386,10 +386,11 @@ http://localhost:7001/auth?scope=openid&response_type=id_token+token&client_id=b
 
 
 
-## 关于OAuth2和OIDC
-OAuth2中通过授权后返回一个access_token给客户端，客户端拿着这个access_token去资源服务器获取受保护的资源。通常这个access_token是jwt格式的。由于jwt的自包含特性，所以资源服务器可以获取jwt中的签名来实现对access_token验证。验证的目的就是判断这个access_token是不是资源服务器信任的授权服务器颁发的。OIDC除了返回一个access_token还会返回一个id_token，这个id_token就是认证后的产物也是OIDC的重点，它包含了认证的用户信息，它也是jwt格式的。id_token它跟access_token的区别在于id_token的产生一定要有用户（资源所有者）参与，同时id_token的受众是客户端，客户端需要通过它拿到认证用户的信息。access_token是授权后的产物，在有些OAuth2授权模式下并不会有用户（资源所有者）这个角色参与，比如客户端模式。同时access_token的受众是资源服务器。
+### 关于OAuth2和OIDC
+
+OAuth2中通过授权后返回一个access_token给客户端，客户端拿着这个access_token去资源服务器获取受保护的资源。通常这个access_token是jwt格式的。由于jwt的自包含特性，所以资源服务器可以获取jwt中的签名来实现对access_token验证。验证的目的就是判断这个access_token是不是资源服务器信任的授权服务器颁发的。OIDC除了返回一个access_token还会返回一个id_token，这个id_token就是认证后的产物也是OIDC的重点，它包含了认证的用户信息，它也是jwt格式的。id_token它跟access_token的区别在于id_token的产生一定要有用户（资源所有者）参与，同时id_token的受众是客户端，客户端需要通过它拿到认证用户的信息。access_token是授权后的产物，在有些OAuth2授权模式下并不会有用户（资源所有者）这个角色参与，比如客户端模式。同时access_token的受众是资源服务器。
 
 
-#### 推荐一位的前辈关于协议的几篇文章
+#### 推荐一位前辈关于协议的几篇文章
 
 http://www.cnblogs.com/linianhui/tag/OIDC/
