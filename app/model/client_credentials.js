@@ -10,7 +10,7 @@ module.exports = app => {
     },
     data: {
       type: JSON, allowNull: true
-    },
+    }
   });
   // ClientCredentials.sync({force: true});
   return ClientCredentials;

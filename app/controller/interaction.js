@@ -6,7 +6,6 @@ const querystring = require('querystring');
 class InteractionController extends Controller {
 
   async grant(ctx) {
-    console.log(ctx.app.oidcProvider);
     const details = await ctx.app.oidcProvider.interactionDetails(ctx.req);
     const client = await ctx.app.oidcProvider.Client.find(details.params.client_id);
     if (details.interaction.error === 'login_required') {
@@ -37,13 +36,11 @@ class InteractionController extends Controller {
   }
 
   async confirm(ctx) {
-    const result = { consent: {} };
+    const result = { consent: { scope:"name" } };
     await ctx.app.oidcProvider.interactionFinished(ctx.req, ctx.res, result);
   }
 
   async login(ctx) {
-
-
     const account = await ctx.app.model.Account.findOne({
       where: {
         username: ctx.request.body.login,
@@ -60,7 +57,9 @@ class InteractionController extends Controller {
           remember: !!ctx.request.body.remember,
           ts: Math.floor(Date.now() / 1000),
         },
-        consent: {},
+        consent: {
+          scope:"name"
+        },
       };
       await ctx.app.oidcProvider.interactionFinished(ctx.req, ctx.res, result);
     }

@@ -28,15 +28,15 @@ module.exports = app => {
           const AccessToken = providerInstance.AccessToken;
           const at = new AccessToken({
             gty: 'password',
+            claims: ctx.oidc.claims,
             accountId: account.id,
-            username: "cat",
+            scope: ctx.oidc.params.scope,
             clientId: ctx.oidc.client.clientId,
             grantId: ctx.oidc.uuid,
           });
 
           const accessToken = await at.save();
           const expiresIn = AccessToken.expiresIn;
-
           ctx.body = {
             access_token: accessToken,
             expires_in: expiresIn,

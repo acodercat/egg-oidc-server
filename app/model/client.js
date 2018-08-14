@@ -7,7 +7,7 @@ module.exports = app => {
     },
     data: {
       type: JSON, allowNull: true
-    },
+    }
   });
   // Client.sync({force: true});
   return Client;

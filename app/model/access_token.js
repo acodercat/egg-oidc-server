@@ -13,7 +13,7 @@ module.exports = app => {
     },
     data: {
       type: JSON, allowNull: true
-    },
+    }
   });
   // AccessToken.sync({force: true});
   return AccessToken;

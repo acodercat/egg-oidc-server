@@ -20,53 +20,54 @@ module.exports = appInfo => {
     ].join(',')
   }
 
+
+  //const jwksClient = require('jwks-rsa');
+  // const client = jwksClient({
+  //   strictSsl: false, // Default value
+  //   jwksUri: 'http://localhost:7001/certs'
+  // });
+  //
+  // const kid = 'zhA-H1DWOSgWQAIW7mewCYeaZLGpkgW_hXfq8jmV99I';
+  // client.getSigningKey(kid, (err, key) => {
+  //   const signingKey = key.publicKey || key.rsaPublicKey;
+  //   console.log(signingKey);
+  //   // Now I can use this to configure my Express or Hapi middleware
+  // });
+  config.jwt = {
+    secret: "-----BEGIN RSA PUBLIC KEY-----\n" +
+      "MIIBCgKCAQEAvdv73smpkrTIBSM8ka+pVXbNi7zYalm0R6WFBH4X8PQj8C7Vfdck\n" +
+      "GsA6bTBseOVCTbu187/63yU2U7vqYiqwSLmkrBVAJjYMJY/XXfncxwqDWR/aa7eI\n" +
+      "JSKh22H/6yz6kFyF1h/ZSk68CPAEQpvd9VFAr4VLEwD32Ag6MwymSOxmFWJyddEt\n" +
+      "ttdGcXLSrHcya3RWyG5KAW3Ti+HgNC+xo/C5LgEsUgjeUq+rc8NBXZrNCY+LJ/R+\n" +
+      "qtB/+5NkwlMJ/fUMBDcmZuciNOH71q7xyn0FGmGjrJXnyVJwyDiTrKRO36piMuia\n" +
+      "JE2nIRJaLvhDN5M1K2VhSKPuaqUPyxLzBwIDAQAB\n" +
+      "-----END RSA PUBLIC KEY-----\n"
+  };
+
   config.oidcProvider = {
     formats: {
       RefreshToken: 'jwt',
       ClientCredentials: 'jwt',
     },
-    // claims: {
-    //   name: ['username'],
-    // },
+    claims: {
+      accountInfo: ['basic_info', 'id', 'username'],
+    },
     keystore: {
-      "keys": [
-        {
-          "kty": "EC",
-          "kid": "wJRLfXnOWtrOQgc3y2Z_Qq53PvEUGTY9zhVHryU48Ac",
-          "crv": "P-256",
-          "x": "OOdt5S_4DwjjEdGYID0av6tILK-cGvfObYv1i8TvvzM",
-          "y": "CWu7d7tj4dnRzl-n29ra6nSj7dkLryp8dOP-JxY7xuE",
-          "d": "cA19TSZbaHKNQAPJ9CR_KCfdbTVZMZr-89covbrb_98"
-        },
-        {
-          "kty": "EC",
-          "kid": "TJE7uIRQIZkkdw0qg0sN92m7G7QG9VWeJA1qWD2Nb8g",
-          "crv": "P-384",
-          "x": "mhoaGnjSGvOHmvZFJR6V6EMHDCNAQu7zDb17ZOFtZ1hRHbFzSK5fpUakR2Ywt2Qe",
-          "y": "vJ2ZVGRqENT98iMrPMiFlC9ABpwfjXF7RuDR09MdKQusZo6odVfTFQh_7ryxOS-P",
-          "d": "lQvnrVRx2_eILUd0EI35vZR0ZliGYYtkxQQZblQENiHOFYbm0V_BfY9J9F-wo3CL"
-        },
-        {
-          "kty": "EC",
-          "kid": "SeoONJULS0MZFBAysz3Nsnkk1bSd6_VvbVAQCkPQEtw",
-          "crv": "P-521",
-          "x": "AK1lsOj-gYdhY4R9XVa6L0MCwpfQXZcEnX-76URJy_FbmdITz0eAGwO8FCo2-kpjnv2kyyiQDu_hSTha-1fdkRP_",
-          "y": "AINgAoqRgnpJJ8eAS7U4AdGDgZ5JqtuGxwM2QBzDY4ySyOz6VDdTLBWW8hnI5Mq4Ieyco2HLS5jwVjlB-ixD2D2l",
-          "d": "AZv2rYDBbisxdqu_qLLVlJEzFNU7VgueWmoPoVnQMPf9eES62tLCenwC_92vHLf-MU6AMVtCpiPmqylMrOcGxGWd"
-        },
-        {
-          "kty": "RSA",
-          "kid": "IqxG2W_9U6Fs0wtEY4qA6HDWwWpaSykhlFTzWz2UnaE",
-          "e": "AQAB",
-          "n": "pExddw1_kLsKQ--9G26My0Uyq7bGjvpXnFLztmfG6P3XNDriaMoq2hwz-oi8Iavyla9d9AztlUjNi11qJsGTq0awifPa-4fYDUe4BoMrsNHcXCLpd78nX9D8_fyb00q-CYDN58Aj6ux52UlH8s3xX714c5R3K_hTnP2fRDB2FMiMUJ_A9WVdYojz3kxBSo9ygMOyJmFzo47MUYUod-N3o5pgmcQb76qBJE8MctAB4j_RN6GIhoja7oSKFG9zUl5eHjUGiJiseAYAoReefgjTGoPD3fINis1jvOZZBGIj9TcZGL-uF3JmzP05rF8m7aqjLxwOsa6P2KRf03pggUQdpQ",
-          "d": "gkTWWr4GJkBXPFSK8YQu-EDukz4Bo34VFyqieD9CdJxIFO6XdBTP804nXH8sA9qtJkf8y7OwcQxfhR_VOdOEfWo4Mbl7KLKl-Kmj3O4GJ1XOTfOUf9C9rHgtEElJWDfMBAbvu9AZ6nwDhOhYtsjZmFrHdYUDFIb57OEfddai2Yh_szfb3nHJPgW7_8cvWrubpBUOsJnSMKXfNBJvIhwtPTuFVPbckE8NQ8pzmzqDb71-lnfUDGAhylg1dKtCticsIkOQNxzuDAsSpqeQ5c2EYpKqqaV3RE-sFMBzdYmUUXqSPxZERW79Jy4_nmAwvYR4uJL_jaHoeuBpSpE98RN95Q",
-          "p": "3NpdfsmnHaecUNOxNqZ3iZEzknTRT9kh4eW8MKRD_ab9_Iug5zMOMOeScI4G5QyAbWttAzYbszxlmYxVdx-cJ8QSJmjq-FkfXTc6Pet0jLhCAE-tZmINtgw0y5RAWjAYDDRCJaND_VPoMM-r_rg4Ff8ROGZRB1TCttpgnKKGprc",
-          "q": "vnHwvOaAck6yg1EPTacb0JmZvJeXrvWd0pdoIpTvgxWKZClFrfvqBcNMQt82ieIzzakG_d3bmnGCPF8_K0tbjkKHkAdqFeEHAy2DV1pmOuyUjc9jGYQfU34EIDsDbSUhje5nsRR03n0C-EayObHVMLw1vLUhw27nlf20UcELooM",
-          "dp": "hqeFFcaxY71L62QGyoFYpMGpJgSfkgWbSPYfdbDR25eziAVCB3TzlBG9EW8m-QRUUWKMRsb4wKF0eNg9S7I0LXK4dj7F9MGyA82mbxZeK2Y0p6fs212xamuqzO0JB3QHVXmPUw9mZtB_4zLbdSSw3Yh04WRQxx2A0qf2-8mEO6U",
-          "dq": "STVxrpwJGmfoNZSuhlJL3fd94sJ_e7FNdwve6xRHsiNQrMo0z_n77zUxFq_Jvl1nPpLQbjyf05H4145hsRnp2xj2FcbT4A8969nOGIFWtSYGwTDMzp08kZLqsR0eZxGUAYR49diASJrTzm8WyhjzdCWVnrIehYsXmVAKxjaoa1M",
-          "qi": "OX1kyiVAfTSWzp1inLNeTPp2VPiD48w_V8EMUGqQ6hcsgggB8KthezD0Ojobe-VHRMJ5zYlxfIHMI6OOPNGRKVfTwbRqmpPzicO1drbrCofG0E8mfcp_hbBnOqbm2fw_ufuTKVtppggGUDf9iR52OSIeqi7hzcSA7BcqgBv8WQA"
-        }
-      ]
+      keys:
+        [{
+          kty: 'RSA',
+          kid: 'zhA-H1DWOSgWQAIW7mewCYeaZLGpkgW_hXfq8jmV99I',
+          use: 'sig',
+          alg: 'RS256',
+          e: 'AQAB',
+          n: 'vdv73smpkrTIBSM8ka-pVXbNi7zYalm0R6WFBH4X8PQj8C7VfdckGsA6bTBseOVCTbu187_63yU2U7vqYiqwSLmkrBVAJjYMJY_XXfncxwqDWR_aa7eIJSKh22H_6yz6kFyF1h_ZSk68CPAEQpvd9VFAr4VLEwD32Ag6MwymSOxmFWJyddEtttdGcXLSrHcya3RWyG5KAW3Ti-HgNC-xo_C5LgEsUgjeUq-rc8NBXZrNCY-LJ_R-qtB_-5NkwlMJ_fUMBDcmZuciNOH71q7xyn0FGmGjrJXnyVJwyDiTrKRO36piMuiaJE2nIRJaLvhDN5M1K2VhSKPuaqUPyxLzBw',
+          d: 'kMMVDtAQvc2d3Vz6p9KaeJG3M97v3Fc9gIuSGtTSCGT-qfnryqGp48PCSNLtQlj77y07FPnCnTZQcBQOKH-IHkt-Zb9mRDxdkp5UhlEnp5Q6hlAlSJCN_FKluxLEAVswSbZiTdvG4EOcV-w6M1eJK62idrJZhcntMAlF5vq0J1DU9d6WsELyNokuOk0Gd6k9phT9RSyyDJCqw5jNyddRNjzT4aZmbjDbIr7Mp_DHrNrg6LNh7g6qP7krnk_uLT50f84KgXL70W6fa6uevOH3qSzgy_SAZlaV-2AHv7byXzZe48KR1rJ9dLL3Y3juS5ZkBPlte24LkuLBBCOBz9ZhcQ',
+          p: '_mxAG1lAudQFbDwkw_XsUjMTsWndIIX7Op3mxLSOzvfPSgXzJqvdEWpQhwkwDlpVfzrSO6TkzBuzLX2AHCI6n50fR7UvWjkJtaFxvmDBs2Jlz_5NHaV7p7Tk9VZot_2f7NNDGHQIE8JWRhRi0yLXuBTiSFKae77ZAsD1xLa8__M',
+          q: 'vwlGq5Yyuo5s4gdYMn0034wlkevfMMAiV74FWLILSUoynctjHaxdCV9MjG5w0K6vmUMqO_HW8UiyHCOqZtCTsDG10VgsMhXQoe-1vNPzt3BBCulqo_5RCOosKEHlu7Rh3krlwiGgs23MaAPCdq5-iy4EFKDUnXZK5TviZB032Z0',
+          dp: '82nD56Z7q45y5bug_S7Su04MwEdlfVFSLCGYAIgyvUcPtmV83Xm-VoQdqSQcKw84DzLKoq-_CpxRz-rrX39MERt1KtjpBeveIzzjot3VVHeGqvlE9GE3rhr-ls7l_2oS0LTK06FnfOgIPKISbqg-NOseF02YaV4NJ3pPaLXgmws',
+          dq: 'QJVWOvQQOlmkHdX1zzvdACZVHTvsvIJ4Gcm37QBkKGbZLddwrrtyyJRbQK6lnScxXlMCmDluPSwiarj0BsZE57Amk5uHdXdCjTyI6EmPf1iH5LR8xOxZYPYp74I3tHmLDKetfS_5MC_ShueeepkLVuo7nu2wc3tmXpEcPFRUaVE',
+          qi: '_M21YgsRgslNsi8WCu8GRz8sksEfS7k8bMzVKCMvpmFWD5RRaQSr_FRvy-TMwdo7iWbQ0Yh3puesOtIilI1ZDj4oWOX5zJWscylwTY6Ha1h7AIBMuCFXGDpGP6CzjqnQIEF0dgVgPXmfqVsf0aoqbuZeV_B6GbhlzlYvWPv_0_Y'
+        }]
     },
     clients: [
       {
@@ -76,14 +77,20 @@ module.exports = appInfo => {
         redirect_uris: ['http://localhost'],
         response_types: ['id_token token'],
         grant_types: ['implicit'],
-        scope: "openid"
       }
     ],
     features: {
       clientCredentials: true,
-      claimsParameter: true
+      claimsParameter: true,
+      registrationManagement: true,
     },
-    scopes: ['openid'],
+    extraClientMetadata: {
+      properties: ['name'],
+      validator(key, value, metadata) {
+
+      }
+    },
+    scopes: ['openid', 'name'],
     // interactionUrl(ctx) {
     //   return `/interaction/${ctx.oidc.uuid}`;
     // },
@@ -91,13 +98,23 @@ module.exports = appInfo => {
     //   keys : ['1212']
     // },
     async findById(ctx, sub) {
-      const account = await ctx.app.model.Account.findById(sub);
-      console.log('account', account);
+      const account = await ctx.app.model.Account.findById(sub, {
+        include: [{
+          model: ctx.app.model.AccountBasicInfo,
+          attributes: ['name', 'sex', 'age', 'phone_number', 'nation', 'id_card_no', 'job_title', 'posts'],
+          as: 'basicInfo',
+          required: true
+        }]
+      });
       return {
-        accountId: 1,
         async claims(use, scope) {
-          return {sub};
-        },
+          return {
+            sub,
+            id: account.id,
+            username: account.username,
+            basic_info: account.basicInfo
+          };
+        }
       };
     }
   }

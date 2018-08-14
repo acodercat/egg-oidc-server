@@ -9,16 +9,16 @@ module.exports = {
       Example:
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
-    return queryInterface.createTable('client_credentials',
+    return queryInterface.createTable('dept',
       {
         id: {
-          type: Sequelize.STRING(64), primaryKey: true, unique: true
+          type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true, unique: true
         },
-        expires_at: {
-          type: Sequelize.DATE, unique: true
+        name: {
+          type: Sequelize.STRING(32), allowNull: false, comment: "名称"
         },
-        data: {
-          type: Sequelize.JSON, allowNull: true
+        operator: {
+          type: Sequelize.STRING(12), comment: "操作人"
         },
         created_at: {
           type: Sequelize.DATE, unique: true

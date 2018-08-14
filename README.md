@@ -384,7 +384,7 @@ http://localhost:7001/auth?scope=openid&response_type=id_token+token&client_id=b
 这个示例使用了`implicit`授权模式，该请求会打开一个认证页面，认证成功后通过重定向返回access_token和id_token。这个id_token也就是oidc在OAuth2基础之上的扩展。
 
 
-
+//  http://localhost:7001/auth?scope=openid&response_type=code&client_id=5533b6d4-cddc-42f2-9d4e-d8d9b0b266ab&nonce=odekghsaoghoashg
 
 ### 关于OAuth2和OIDC
 

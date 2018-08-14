@@ -21,14 +21,14 @@ module.exports = {
           type: Sequelize.DATE, unique: true
         },
         data: {
-          type: Sequelize.JSON, allowNull: true
+          type: Sequelize.JSON
         },
         created_at: {
           type: Sequelize.DATE, unique: true
         },
         updated_at: {
           type: Sequelize.DATE, unique: true
-        },
+        }
       });
   },
 
