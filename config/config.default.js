@@ -101,7 +101,7 @@ module.exports = appInfo => {
       const account = await ctx.app.model.Account.findById(sub, {
         include: [{
           model: ctx.app.model.AccountBasicInfo,
-          attributes: ['name', 'sex', 'age', 'phone_number', 'nation', 'id_card_no', 'job_title', 'posts'],
+          attributes: ['name', 'sex', 'age', 'phone_number', 'nation', 'id_card_no', 'job_title', 'post_ids'],
           as: 'basicInfo',
           required: true
         }]

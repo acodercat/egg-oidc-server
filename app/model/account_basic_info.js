@@ -29,10 +29,16 @@ module.exports = app => {
     dept_ids: {
       type: JSON, comment: "部门"
     },
+    administrative_post_id: {
+      type: INTEGER, comment: "行政职务"
+    },
+    inner_party_post_id: {
+      type: INTEGER, comment: "党内职务"
+    },
     job_title: {
       type: STRING(32), comment: "职称"
     },
-    posts: {
+    post_ids: {
       type: JSON, comment: "岗位"
     }
   });

@@ -3,12 +3,8 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.createTable('users', { id: Sequelize.INTEGER });
-    */
+      账号基本信息
+     */
     return queryInterface.createTable('account_basic_info',
       {
         id: {
@@ -38,10 +34,16 @@ module.exports = {
         dept_ids: {
           type: Sequelize.JSON, comment: "部门"
         },
+        administrative_post_id: {
+          type: Sequelize.INTEGER, comment: "行政职务"
+        },
+        inner_party_post_id: {
+          type: Sequelize.INTEGER, comment: "党内职务"
+        },
         job_title: {
           type: Sequelize.STRING(32), comment: "职称"
         },
-        posts: {
+        post_ids: {
           type: Sequelize.JSON, comment: "岗位"
         },
         created_at: {
