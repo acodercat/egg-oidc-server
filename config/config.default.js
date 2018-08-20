@@ -137,7 +137,7 @@ module.exports = appInfo => {
       collate: 'utf8_general_ci',
       timestamps: true,
       freezeTableName: true,
-      // paranoid: true
+      paranoid: true
     },
   };
 

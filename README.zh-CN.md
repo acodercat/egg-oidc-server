@@ -11,11 +11,9 @@ $ npm i
 
 ## 执行迁移
 
-先需要在`config.default.js`配置文件的`config.sequelize`中配置数据库信息。
-如果是使用的是mysql就把dialect配置成mysql。
-然后执行sequelize迁移
+迁移的配置文件在database目录下的`config.json`。
 ```bash
-npm run migrate:up
+ npm run sequelize -- db:migrate
 ```
 
 迁移文件运行完毕后，把`config.default.js`配置文件中的`config.view`配置项的注释打开。
@@ -34,8 +32,7 @@ DEBUG=oidc-provider:* npm run dev
 ### windows
 
 ```bash
-set DEBUG=oidc-provider:*
-npm run dev
+set DEBUG=oidc-provider:* & npm run dev
 ```
 
 ## 说明
@@ -384,7 +381,7 @@ http://localhost:7001/auth?scope=openid&response_type=id_token+token&client_id=b
 这个示例使用了`implicit`授权模式，该请求会打开一个认证页面，认证成功后通过重定向返回access_token和id_token。这个id_token也就是oidc在OAuth2基础之上的扩展。
 
 
-
+//  http://localhost:7001/auth?scope=openid&response_type=code&client_id=5533b6d4-cddc-42f2-9d4e-d8d9b0b266ab&nonce=odekghsaoghoashg
 
 ### 关于OAuth2和OIDC
 
