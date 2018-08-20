@@ -20,10 +20,10 @@ module.exports = {
           type: Sequelize.STRING(12), comment: "操作人"
         },
         created_at: {
-          type: Sequelize.DATE, unique: true
+          type: Sequelize.DATE
         },
         updated_at: {
-          type: Sequelize.DATE, unique: true
+          type: Sequelize.DATE
         }
       });
   },

@@ -34,8 +34,7 @@ DEBUG=oidc-provider:* npm run dev
 ### windows
 
 ```bash
-set DEBUG=oidc-provider:*
-npm run dev
+set DEBUG=oidc-provider:* & npm run dev
 ```
 
 ## 说明

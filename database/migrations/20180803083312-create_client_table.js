@@ -3,28 +3,21 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.createTable('users', { id: Sequelize.INTEGER });
+      客户端
     */
-    return queryInterface.createTable('client_credentials',
+    return queryInterface.createTable('client',
       {
         id: {
           type: Sequelize.STRING(64), primaryKey: true, unique: true
-        },
-        expires_at: {
-          type: Sequelize.DATE, unique: true
         },
         data: {
           type: Sequelize.JSON, allowNull: true
         },
         created_at: {
-          type: Sequelize.DATE, unique: true
+          type: Sequelize.DATE
         },
         updated_at: {
-          type: Sequelize.DATE, unique: true
+          type: Sequelize.DATE
         }
       });
   },

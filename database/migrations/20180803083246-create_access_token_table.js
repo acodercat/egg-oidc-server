@@ -24,10 +24,10 @@ module.exports = {
           type: Sequelize.JSON
         },
         created_at: {
-          type: Sequelize.DATE, unique: true
+          type: Sequelize.DATE
         },
         updated_at: {
-          type: Sequelize.DATE, unique: true
+          type: Sequelize.DATE
         }
       });
   },

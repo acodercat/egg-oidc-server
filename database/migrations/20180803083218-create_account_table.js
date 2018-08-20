@@ -23,10 +23,10 @@ module.exports = {
           type: Sequelize.JSON, comment: "所能登录的客户端id"
         },
         created_at: {
-          type: Sequelize.DATE, unique: true
+          type: Sequelize.DATE
         },
         updated_at: {
-          type: Sequelize.DATE, unique: true
+          type: Sequelize.DATE
         }
       });
   },

@@ -3,9 +3,9 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
-      岗位
+      部门
      */
-    return queryInterface.createTable('post',
+    return queryInterface.createTable('dept',
       {
         id: {
           type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true, unique: true
@@ -16,17 +16,14 @@ module.exports = {
         name: {
           type: Sequelize.STRING(32), allowNull: false, comment: "名称"
         },
-        remark: {
-          type: Sequelize.TEXT, comment: "备注"
-        },
         operator: {
           type: Sequelize.STRING(12), comment: "操作人"
         },
         created_at: {
-          type: Sequelize.DATE, unique: true
+          type: Sequelize.DATE
         },
         updated_at: {
-          type: Sequelize.DATE, unique: true
+          type: Sequelize.DATE
         }
       });
   },

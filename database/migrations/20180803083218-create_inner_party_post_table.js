@@ -3,27 +3,27 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
-      部门
+      党内职务
      */
-    return queryInterface.createTable('dept',
+    return queryInterface.createTable('inner_party_post',
       {
         id: {
           type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true, unique: true
         },
-        parent_id: {
-          type: Sequelize.INTEGER, comment: "父id"
-        },
         name: {
           type: Sequelize.STRING(32), allowNull: false, comment: "名称"
+        },
+        remark: {
+          type: Sequelize.TEXT, comment: "备注"
         },
         operator: {
           type: Sequelize.STRING(12), comment: "操作人"
         },
         created_at: {
-          type: Sequelize.DATE, unique: true
+          type: Sequelize.DATE
         },
         updated_at: {
-          type: Sequelize.DATE, unique: true
+          type: Sequelize.DATE
         }
       });
   },
