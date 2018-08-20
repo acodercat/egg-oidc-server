@@ -13,6 +13,12 @@ module.exports = {
         data: {
           type: Sequelize.JSON, allowNull: true
         },
+        name: {
+          type: Sequelize.STRING(12), comment: "客户端名称"
+        },
+        client_secret: {
+          type: Sequelize.STRING(128)
+        },
         created_at: {
           type: Sequelize.DATE
         },

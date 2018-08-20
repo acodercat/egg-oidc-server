@@ -37,14 +37,19 @@ module.exports = app => {
   const client = {
     upsert(data) {
       const id = data.id;
+      const name = data.name || '';
+      const client_secret = data.client_secret || '';
       delete data.id;
-      let client = app.model.Client.build({ id, data });
+      delete data.name;
+      delete data.client_secret;
+      let client = app.model.Client.build({ id, data, name, client_secret });
       return client.save();
     },
     async findById (id) {
-      const found = await app.model.Client.findById(id);
-      if (!found) return;
-      return { ...found.data };
+      const client = await app.model.Client.findById(id);
+      if (!client) return;
+      console.log({ ...client.data, client_secret: client.client_secret });
+      return { ...client.data, client_secret: client.client_secret };
     }
   };
 
