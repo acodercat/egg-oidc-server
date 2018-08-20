@@ -16,11 +16,6 @@ $ npm i
  npm run sequelize -- db:migrate
 ```
 
-迁移文件运行完毕后，把`config.default.js`配置文件中的`config.view`配置项的注释打开。
-这里注释的原因是在执行迁移的时候，这里会报错。具体的报错原因是因为在配置文件中使用了path模块。
-
-
-
 ## 运行
 
 ### linux
